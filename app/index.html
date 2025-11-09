@@ -14,6 +14,24 @@
     <div class="screengrid">
         <div class="controlpanel">
             <h1>今昔マップ</h1>
+            <br>
+            <form>
+                <label for="base-dropdown">地図の種類を選んで</label>
+                <select id="base-dropdown"></select>
+            </form>
+            <form>
+                <label for="photo-dropdown">航空写真の年代を選んで</label>
+                <select id="photo-dropdown"></select>
+            </form>
+            <form>
+                <label for="topo-dropdown">地形図の年代を選んで</label>
+                <select id="topo-dropdown"></select>
+            </form>
+            <br>
+            <h2 id="spot-title"></h2>
+            <div id="spot-abst"></div>
+            <div id="spot-detail"></div>
+
         </div>
         <div id="map"></div>
     </div>
@@ -22,7 +40,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <!-- マーカークラスタリングのためのプラグイン -->
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script> 
-    <script src="mapapp.js"></script>
+    <script type="module"  src="mapapp.js"></script>
 
 </body>
 </html>

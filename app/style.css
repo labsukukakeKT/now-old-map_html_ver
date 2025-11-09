@@ -17,6 +17,21 @@ html, body {
     grid-column: 1;
 }
 
+#spot-detail {
+    /* 必須：ボックスの固定の高さ */
+    height: 150px; 
+    /* 必須：ボックスの固定の幅 */
+    width: 400px;
+    
+    /* 必須：内容がボックスを超えた場合にのみスクロールバーを表示 */
+    overflow: auto; 
+    
+    /* その他：見た目を整えるためのプロパティ */
+    border: 1px solid #ccc;
+    padding: 10px;
+    white-space: pre-wrap; /* テキストの改行を保持する（任意） */
+}
+
 #map {
     /* 2~4列目に広げる */
     grid-column: 2 / 5;

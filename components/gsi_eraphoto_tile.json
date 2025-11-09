@@ -1,0 +1,39 @@
+[
+    {
+        "DataSet": "年代別航空写真",
+        "EraInfo": [
+            {
+                "Era": [1987, 1990],
+                "EraFolder": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/{z}/{x}/{y}.jpg"
+            },
+            {
+                "Era": [1984, 1986],
+                "EraFolder": "https://cyberjapandata.gsi.go.jp/xyz/gazo3/{z}/{x}/{y}.jpg"
+            },
+            {
+                "Era": [1979, 1983],
+                "EraFolder": "https://cyberjapandata.gsi.go.jp/xyz/gazo2/{z}/{x}/{y}.jpg"
+            },
+            {
+                "Era": [1974, 1978],
+                "EraFolder": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/{z}/{x}/{y}.jpg"
+            },
+            {
+                "Era": [1961, 1969],
+                "EraFolder": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/{z}/{x}/{y}.png"
+            },
+            {
+                "Era": [1945, 1950],
+                "EraFolder": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/{z}/{x}/{y}.png"
+            },
+            {
+                "Era": [1936, 1942],
+                "EraFolder": "https://cyberjapandata.gsi.go.jp/xyz/ort_riku10/{z}/{x}/{y}.png"
+            },
+            {
+                "Era": [1928, 1928],
+                "EraFolder": "https://cyberjapandata.gsi.go.jp/xyz/ort_1928/{z}/{x}/{y}.png"
+            }
+        ]
+    }
+]
