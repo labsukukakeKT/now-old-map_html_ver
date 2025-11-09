@@ -1,0 +1,23 @@
+html, body {
+    /* 画面全体に広げる */
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.screengrid {
+    display: grid;
+    height: 100%;
+    /* 列を四分割 */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.controlpanel {
+    grid-column: 1;
+}
+
+#map {
+    /* 2~4列目に広げる */
+    grid-column: 2 / 5;
+}
