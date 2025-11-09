@@ -1,0 +1,58 @@
+{
+  "name": "nowoldmap_pbc2025",
+  "version": "1.0.0",
+  "description": "This is a application that overlooks now and old map / aerial photos.",
+  "keywords": [
+    "html",
+    "JavaScript",
+    "web-app",
+    "map"
+  ],
+  "homepage": "https://github.com/labsukukakeKT/NowOldMap_pbc2025#readme",
+  "bugs": {
+    "url": "https://github.com/labsukukakeKT/NowOldMap_pbc2025/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/labsukukakeKT/NowOldMap_pbc2025.git"
+  },
+  "license": "ISC",
+  "author": "labsukukakeKT",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "audit": "npm audit",
+    "audit:fix": "npm audit fix",
+    "outdated": "npm outdated",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.18.0",
+    "@supabase/supabase-js": "^2.45.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.427.0",
+    "next": "^14.2.33",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.2.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.33",
+    "postcss": "^8.4.41",
+    "prisma": "^5.18.0",
+    "tailwindcss": "^3.4.9",
+    "typescript": "^5.5.4"
+  }
+}
