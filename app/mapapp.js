@@ -1,6 +1,6 @@
 import FileNames from "./filenames.js";
 import Spots from "../components/spots.js";
-import gm from "hoge/hoge.js";
+import gm from "./hoge/hoge.js";
 
 gm();
 
