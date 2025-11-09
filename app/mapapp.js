@@ -1,5 +1,8 @@
 import FileNames from "./filenames.js";
 import Spots from "../components/spots.js";
+import gm from "hoge/hoge.js";
+
+gm();
 
 // HTMLが完全に読み込まれた後にコードを実行する
 document.addEventListener('DOMContentLoaded', function() {
