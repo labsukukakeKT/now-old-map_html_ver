@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css">
     <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
     <div class="screengrid">
+        <h1 class="title">今昔マップ</h1>
         <div class="controlpanel">
-            <h1>今昔マップ</h1>
+            
             <br>
             <form>
                 <label for="base-dropdown">地図の種類を選んで</label>
@@ -32,14 +34,20 @@
             <div id="spot-abst"></div>
             <div id="spot-detail"></div>
 
+            
+
         </div>
+
+        <div id="era-slider"></div>
         <div id="map"></div>
     </div>
 
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <!-- マーカークラスタリングのためのプラグイン -->
-    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script> 
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
     <script type="module"  src="mapapp.js"></script>
 
 </body>

@@ -1,5 +1,6 @@
 import FileNames from "./filenames.js";
-import Spots from "./components/spots.js";
+import Spots from "./utils/spots.js";
+import setSlider from "./utils/slider.js";
 
 
 // HTMLが完全に読み込まれた後にコードを実行する
@@ -14,9 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // 3. TileLayerを作成し、地図に追加
     var tileLayer = L.tileLayer(gsistdTileUrl, {
         // 著作権表示（必須）
-        attribution: '出典: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">地理院タイル</a>, <ahref="https://ktgis.net/kjmapw/tilemapservice.html" target="_blank">今昔マップ on the web</a>',
+        attribution: '出典: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">地理院タイル</a>, <a href="https://ktgis.net/kjmapw/tilemapservice.html" target="_blank">今昔マップ on the web</a>',
         maxZoom: 18 // 最大ズームレベル
     }).addTo(map);
+
+
+
+    const slider = document.getElementById('era-slider');
+    setSlider(slider);
 
 
 

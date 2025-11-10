@@ -8,12 +8,18 @@ html, body {
 .screengrid {
     display: grid;
     height: 100%;
-    /* 列を四分割 */
+    /* 列を四等分、行を2分割 */
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 100px 1fr;
+}
+
+#title {
+    grid-row: 1;
+    grid-column: 1;
 }
 
 .controlpanel {
+    grid-row: 2;
     grid-column: 1;
 }
 
@@ -32,7 +38,35 @@ html, body {
     white-space: pre-wrap; /* テキストの改行を保持する（任意） */
 }
 
-#map {
-    /* 2~4列目に広げる */
+#era-slider {
+    grid-row: 1;
     grid-column: 2 / 5;
+    margin-top: 30px;
+    height: 10px; /* スライダーの高さ */
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#map {
+    grid-row: 2;
+    grid-column: 2 / 5;
+    height: 100%;
+    width: 100%;
+}
+
+.noUi-horizontal .noUi-tooltip {
+    /* デフォルトの 'top' や 'bottom' を上書き */
+    bottom: -30px; /* ハンドル（つまみ）から30px下へ */
+    top: auto;      /* 上の位置指定をリセット */
+}
+
+/* ツールチップの背景色や文字色を変更する例 */
+.noUi-tooltip {
+    background: #007bff; /* 青色に変更 */
+    color: white;        /* 文字色を白に変更 */
+    border: none;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: bold;
 }
