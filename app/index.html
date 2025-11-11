@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -29,6 +30,12 @@
                 <label for="topo-dropdown">地形図の年代を選んで</label>
                 <select id="topo-dropdown"></select>
             </form>
+
+            <button class="map-toggle-button map-view">
+                <img id="map-toggle-button-icon" alt="地形図と航空写真の切り替えアイコン">
+                <span>航空写真に切り替え</span>
+            </button>
+
             <br>
             <h2 id="spot-title"></h2>
             <div id="spot-abst"></div>
@@ -48,6 +55,7 @@
     <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script type="module"  src="mapapp.js"></script>
 
 </body>

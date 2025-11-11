@@ -1,6 +1,13 @@
 import FileNames from "./filenames.js";
 import Spots from "./utils/spots.js";
 import setSlider from "./utils/slider.js";
+// import { createClient } from "@supabase/supabase-js";
+
+// 環境変数から情報を取得
+// const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+// const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+// console.log(supabaseUrl);
+// const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 
 // HTMLが完全に読み込まれた後にコードを実行する
@@ -109,6 +116,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+    // 地形図と航空写真の切り替えボタンの設定
+    const button = document.querySelector('.map-toggle-button');
+    button.addEventListener('click', () => {
+        // 現在の状態によってクラスとテキストを切り替える
+        console.log('押された')
+        if (button.classList.contains('map-view')) {
+            button.classList.remove('map-view');
+            button.classList.add('satellite-view');
+            button.querySelector('span').textContent = '地形図に切り替え';
+            // 実際の地図の切り替え処理...
+            const url = gsi_eraphoto_dataset.EraInfo[0].EraFolder;
+            tileLayer.setUrl(url)
+        } else {
+            button.classList.remove('satellite-view');
+            button.classList.add('map-view');
+            button.querySelector('span').textContent = '航空写真に切り替え';
+            // 実際の地図の切り替え処理...
+            const url = gsi_std_dataset[0].EraInfo[0].EraFolder;
+            tileLayer.setUrl(url)
+        }
+    });
+    // ボタンに付随するアイコンの設定
+    const button_img = document.getElementById("map-toggle-button-icon");
+    button_img.src = FileNames.MAP_PHOTO_ICON;
 
 
 
