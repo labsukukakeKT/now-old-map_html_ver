@@ -144,6 +144,19 @@ async function main() {
 
 
 
+    // ピンの表示・非表示の設定
+    const pin_checkbox = document.getElementById('show-pins');
+    pin_checkbox.addEventListener('change', function(event) {
+        const tf = event.target.checked;
+        if (tf) {
+            map.addLayer(marker_group);
+        } else {
+            map.removeLayer(marker_group);
+        }
+    });
+
+
+
 
     /**
      * 地形図・航空写真の変更、年代の変更、地図の位置が変更されたときに実行される。
