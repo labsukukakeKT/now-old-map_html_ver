@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -16,20 +15,23 @@
     <div class="screengrid">
         <h1 class="title">今昔マップ</h1>
         <div class="controlpanel">
-            
-            <br>
+            <div>
+                <span>表示中の地図：</span>
+                <span id="current-map"></span>
+            </div>
+            <div>
+                <span>表示中の年代：</span>
+                <span id="current-era"></span>
+            </div>
             <form>
-                <label for="base-dropdown">地図の種類を選んで</label>
-                <select id="base-dropdown"></select>
+                <label for="base-selector">背景地図の種類：</label>
+                <select id="base-selector" name="haikei"></select>
             </form>
-            <form>
-                <label for="photo-dropdown">航空写真の年代を選んで</label>
-                <select id="photo-dropdown"></select>
-            </form>
-            <form>
-                <label for="topo-dropdown">地形図の年代を選んで</label>
-                <select id="topo-dropdown"></select>
-            </form>
+            <div>
+                <span>地図の透明度：</span>
+                <input id="alpha-slider" type="range" min="0" max="1" step="0.01" value="1">
+                <label id="alpha-slider-label" for="alpha-slider">音量</label>
+            </div>
 
             <button class="map-toggle-button map-view">
                 <img id="map-toggle-button-icon" alt="地形図と航空写真の切り替えアイコン">

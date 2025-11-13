@@ -10,7 +10,7 @@ export default function setSlider(slider) {
         start: [2025],
         // 最小値と最大値
         range: {
-            'min': 1875,
+            'min': 1890,
             'max': 2025
         },
         // スライダーの動きのステップ

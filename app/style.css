@@ -54,9 +54,10 @@ html, body {
     border-color: #007bff;
 }
 
-#title {
+.title {
     grid-row: 1;
     grid-column: 1;
+    margin: 50;
 }
 
 .controlpanel {

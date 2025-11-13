@@ -1,0 +1,56 @@
+[
+    {
+        "data_set": "全国最新写真（シームレス）",
+        "zoom_level": [2, 18],
+        "era": [-1, -1],
+        "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg"
+    },
+    {
+        "data_set": "1987年～1990年（国土画像情報）",
+        "zoom_level": [10, 17],
+        "era": [1987, 1990],
+        "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/{z}/{x}/{y}.jpg"
+    },
+    {
+        "data_set": "1984年～1986年（国土画像情報）",
+        "zoom_level": [10, 17],
+        "era": [1984, 1986],
+        "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo3/{z}/{x}/{y}.jpg"
+    },
+    {
+        "data_set": "1979年～1983年（国土画像情報）",
+        "zoom_level": [10, 17],
+        "era": [1979, 1983],
+        "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo2/{z}/{x}/{y}.jpg"
+    },
+    {
+        "data_set": "1974年～1978年（国土画像情報）",
+        "zoom_level": [10, 17],
+        "era": [1974, 1978],
+        "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/{z}/{x}/{y}.jpg"
+    },
+    {
+        "data_set": "オルソ旧10",
+        "zoom_level": [10, 17],
+        "era": [1961, 1969],
+        "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/{z}/{x}/{y}.png"
+    },
+    {
+        "data_set": "オルソ米軍10",
+        "zoom_level": [10, 17],
+        "era": [1945, 1950],
+        "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/{z}/{x}/{y}.png"
+    },
+    {
+        "data_set": "オルソ陸軍10",
+        "zoom_level": [13, 18],
+        "era": [1936, 1942],
+        "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_riku10/{z}/{x}/{y}.png"
+    },
+    {
+        "data_set": "オルソ1928",
+        "zoom_level": [13, 18],
+        "era": [1928, 1928],
+        "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_1928/{z}/{x}/{y}.png"
+    }
+]

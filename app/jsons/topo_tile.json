@@ -1,0 +1,62 @@
+[
+    {
+        "data_set": "標準地図",
+        "zoom_level": [5, 18],
+        "era": [-1, -1],
+        "url": "https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png"
+    },
+    {
+        "data_set": "1998-2005年（首都圏）",
+        "zoom_level": [8, 16],
+        "era": [1998, 2005],
+        "url": "https://ktgis.net/kjmapw/kjtilemap/tokyo50/07/{z}/{x}/{-y}.png"
+    },
+    {
+        "data_set": "1992-1995年（首都圏）",
+        "zoom_level": [8, 16],
+        "era": [1992, 1995],
+        "url": "https://ktgis.net/kjmapw/kjtilemap/tokyo50/06/{z}/{x}/{-y}.png"
+    },
+    {
+        "data_set": "1983-1987年（首都圏）",
+        "zoom_level": [8, 16],
+        "era": [1983, 1987],
+        "url": "https://ktgis.net/kjmapw/kjtilemap/tokyo50/05/{z}/{x}/{-y}.png"
+    },
+    {
+        "data_set": "1975-1978年（首都圏）",
+        "zoom_level": [8, 16],
+        "era": [1965, 1968],
+        "url": "https://ktgis.net/kjmapw/kjtilemap/tokyo50/04/{z}/{x}/{-y}.png"
+    },
+    {
+        "data_set": "1965-1968年（首都圏）",
+        "zoom_level": [8, 16],
+        "era": [1965, 1968],
+        "url": "https://ktgis.net/kjmapw/kjtilemap/tokyo50/03/{z}/{x}/{-y}.png"
+    },
+    {
+        "data_set": "1944-1954年（首都圏）",
+        "zoom_level": [8, 16],
+        "era": [1944, 1954],
+        "url": "https://ktgis.net/kjmapw/kjtilemap/tokyo50/02/{z}/{x}/{-y}.png"
+    },
+    {
+        "data_set": "1927-1939年（首都圏）",
+        "zoom_level": [8, 16],
+        "era": [1927, 1939],
+        "url": "https://ktgis.net/kjmapw/kjtilemap/tokyo50/01/{z}/{x}/{-y}.png"
+    },
+    {
+        "data_set": "1917-1924年（首都圏）",
+        "zoom_level": [8, 16],
+        "era": [1917, 1924],
+        "url": "https://ktgis.net/kjmapw/kjtilemap/tokyo50/00/{z}/{x}/{-y}.png"
+    },
+    {
+        "data_set": "1896-1909年2万分1（首都圏）",
+        "zoom_level": [8, 16],
+        "era": [1896, 1909],
+        "url": "https://ktgis.net/kjmapw/kjtilemap/tokyo50/2man/{z}/{x}/{-y}.png"
+    }
+]

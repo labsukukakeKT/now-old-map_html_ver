@@ -1,0 +1,14 @@
+[
+    {
+        "data_set": "なし",
+        "url": ""
+    },
+    {
+        "data_set": "標準地図",
+        "url": "https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png"
+    },
+    {
+        "data_set": "淡色地図",
+        "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png"
+    }
+]

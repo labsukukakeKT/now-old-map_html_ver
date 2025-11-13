@@ -1,0 +1,55 @@
+[
+    {
+        "data_set": "首都圏",
+        "zoom_level": [8, 16],
+        "range": [[35.27005, 139.29972], [35.86994, 140.1996]],
+        "data_set_folder": "tokyo50",
+        "era_info": [
+            {"era": [1896, 1909], "era_folder": "2man"},
+            {"era": [1917, 1924], "era_folder": "00"},
+            {"era": [1927, 1939], "era_folder": "01"},
+            {"era": [1944, 1954], "era_folder": "02"},
+            {"era": [1965, 1968], "era_folder": "03"},
+            {"era": [1975, 1978], "era_folder": "04"},
+            {"era": [1983, 1987], "era_folder": "05"},
+            {"era": [1992, 1995], "era_folder": "06"},
+            {"era": [1998, 2005], "era_folder": "07"}
+        ]
+    },
+    {
+        "data_set": "中京圏",
+        "zoom_level": [8, 16],
+        "range": [[34.8366, 136.49708], [35.50319, 137.24698]],
+        "data_set_folder": "chukyo",
+        "era_info": [
+            {"era": [1888, 1898], "era_folder": "2man"},
+            {"era": [1920, 1920], "era_folder": "00"},
+            {"era": [1932, 1932], "era_folder": "01"},
+            {"era": [1937, 1938], "era_folder": "02"},
+            {"era": [1947, 1947], "era_folder": "03"},
+            {"era": [1959, 1960], "era_folder": "04"},
+            {"era": [1968, 1973], "era_folder": "05"},
+            {"era": [1976, 1980], "era_folder": "06"},
+            {"era": [1984, 1989], "era_folder": "07"},
+            {"era": [1992, 1996], "era_folder": "08"}
+        ]
+    },
+    {
+        "data_set": "京阪神圏",
+        "zoom_level": [8, 16],
+        "range": [[34.33665, 135.1223], [35.08665, 135.99696]],
+        "data_set_folder": "keihansin",
+        "era_info": [
+            {"era": [1892, 1910], "era_folder": "2man"},
+            {"era": [1922, 1923], "era_folder": "00"},
+            {"era": [1927, 1935], "era_folder": "01"},
+            {"era": [1947, 1950], "era_folder": "02"},
+            {"era": [1954, 1956], "era_folder": "03"},
+            {"era": [1961, 1964], "era_folder": "03x"},
+            {"era": [1967, 1970], "era_folder": "04"},
+            {"era": [1975, 1979], "era_folder": "05"},
+            {"era": [1983, 1988], "era_folder": "06"},
+            {"era": [1993, 1997], "era_folder": "07"}
+        ]
+    }
+]

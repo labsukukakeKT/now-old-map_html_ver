@@ -1,140 +1,110 @@
 import FileNames from "./filenames.js";
+import TileLoader from "./utils/tileloader.js";
 import Spots from "./utils/spots.js";
 import setSlider from "./utils/slider.js";
-// import { createClient } from "@supabase/supabase-js";
-
-// 環境変数から情報を取得
-// const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-// const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-// console.log(supabaseUrl);
-// const supabase = createClient(supabaseUrl, supabaseAnonKey)
-
 
 // HTMLが完全に読み込まれた後にコードを実行する
-document.addEventListener('DOMContentLoaded', function() {
-    // 1. 地図を作成し、初期表示の中心座標とズームレベルを設定
-    var map = L.map('map').setView([35.5117, 139.4754], 15); // [緯度, 経度], ズームレベル (例: 東京駅周辺)
+document.addEventListener('DOMContentLoaded', main);
 
-    // 2. 地理院タイルのURLテンプレートを指定
-    // 地理院タイルURL
-    var gsistdTileUrl = 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png';
+async function main() {
+    // TileLoaderの設定
+    const json_files = [FileNames.TOPO_JSON, FileNames.PHOTO_JSON, FileNames.KJMAP_JSON, FileNames.GSI_STD_JSON];
+    let tile_loader = new TileLoader(json_files);
+
+    // ロードが完了するまでawaitで待機する
+    try {
+        for (let i = 0; i < tile_loader.data_promise.length; i++) {
+            await tile_loader.data_promise[i];
+        }
+        tile_loader.constructor2();
+    } catch(error) {
+        console.error("データロード中にエラーが発生しました:", error);
+    }
+
     
-    // 3. TileLayerを作成し、地図に追加
-    var tileLayer = L.tileLayer(gsistdTileUrl, {
+
+
+    // 地図の設定
+    // baseLayerとtileLayerの二種類のレイヤーを用意する
+    // 年代別の地図はtileLayerで実装し、拝啓としてbaseLayerを使う
+    const init_poinit = [35.5117, 139.4754]; // すずかけ台
+    let map = L.map('map').setView(init_poinit, 15); // 最初の表示場所とズームレベル
+    let current_map_url = tile_loader.topo_tile[0].url;
+    let baseLayer = L.tileLayer("").addTo(map);
+    let tileLayer = L.tileLayer(current_map_url, {
         // 著作権表示（必須）
         attribution: '出典: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">地理院タイル</a>, <a href="https://ktgis.net/kjmapw/tilemapservice.html" target="_blank">今昔マップ on the web</a>',
         maxZoom: 18 // 最大ズームレベル
     }).addTo(map);
+    map.on('dragend', MapChanged);
 
 
 
-    const slider = document.getElementById('era-slider');
+
+    // 現在表示している地図のラベル表示の設定
+    let map_label = document.getElementById('current-map');
+    map_label.textContent = tile_loader.topo_tile[0].data_set;
+    let era_label = document.getElementById('current-era');
+    era_label.textContent = "最新の地図";
+
+
+
+
+    // 背景レイヤーの種類の選択
+    const base_selector = document.getElementById('base-selector');
+    for (let i = 0; i < 3; i++) {
+        let option = document.createElement('option');
+        option.textContent = tile_loader.std_tile[i].data_set;
+        option.value = i;
+        base_selector.appendChild(option);
+    }
+    base_selector.addEventListener('change', function(event) {
+        const id = event.target.value;
+        const url = tile_loader.std_tile[id].url;
+        baseLayer.setUrl(url);
+    });
+
+
+
+
+    // 透明度スライダーの設定
+    const a_slider = document.getElementById('alpha-slider');
+    const a_sld_label = document.getElementById('alpha-slider-label'); 
+    a_sld_label.textContent = a_slider.value;
+    a_slider.addEventListener('change', function(event) {
+        const val = event.target.value;
+        a_sld_label.textContent = val;
+        tileLayer.setOpacity(val);
+    });
+
+
+
+
+    // 年代スライダーの設定
+    let slider = document.getElementById('era-slider');
     setSlider(slider);
+    slider.noUiSlider.on('change', MapChanged);
 
 
 
-    // ベース地図の設定
-    const base_selector = document.getElementById('base-dropdown');
-    base_selector.addEventListener('change', baseChanged);
-
-    // 年代別航空写真の設定
-    const photo_selector = document.getElementById('photo-dropdown');
-    photo_selector.addEventListener('change', photoChanged);
-
-    // 今昔マップの設定
-    const kjmap_selector = document.getElementById('topo-dropdown');
-    kjmap_selector.addEventListener('change', topoChanged);
-
-
-    let gsi_std_dataset = null;
-    const gsi_std_file = FileNames.GSI_STD_JSON;
-    fetch(gsi_std_file).then(response => {
-        return response.json();
-    }).then(data_std_tile => {
-        console.log("JSONデータ読み込み完了: ", data_std_tile);
-
-        gsi_std_dataset = data_std_tile;
-        for (var i = 0; i < gsi_std_dataset.length; i++) {
-            const option = document.createElement('option');
-            option.value = i;
-            option.textContent = data_std_tile[i].DataSet; 
-            base_selector.appendChild(option);
-        }
-    }).catch(error => {
-        console.error("JSONファイル読み込み中にエラーが発生しました。: ", error);
-    });
-
-
-    let gsi_eraphoto_dataset = null;
-    const eraphoto_json_file = FileNames.GSI_PHOTO_JSON;
-    fetch(eraphoto_json_file).then(response => {
-        return response.json();
-    }).then(data_eraphoto_tile => {
-        console.log("JSONデータ読み込み完了: ", data_eraphoto_tile);
-
-        const eraphoto = data_eraphoto_tile.find(item => item.DataSet == "年代別航空写真")
-        gsi_eraphoto_dataset = eraphoto;
-
-        for (var i = 0; i < eraphoto.EraInfo.length; i++) {
-            const option = document.createElement('option');
-            option.value = i;
-            option.textContent = String(eraphoto.EraInfo[i].Era[0]) + "年～" + String(eraphoto.EraInfo[i].Era[1]) + "年";
-            photo_selector.appendChild(option);
-        }
-    }).catch(error => {
-        console.error("JSONファイル読み込み中にエラーが発生しました。: ", error);
-    });
-
-
-    // 今昔マップ on the webのタイルの読み込み
-    let kjmap_dataset = null;
-    const kjmap_json_file = FileNames.KJMAP_JSON;
-    // fetchを使って非同期ファイルを読み込む
-    fetch(kjmap_json_file).then(response => {
-        // レスポンスがjson形式であることを指定し、文字列をJavaScriptのオブジェクトに変換(パース)
-        return response.json();
-    }).then(data_kjmap_tile => {
-        console.log("JSONデータの読み込み完了: ", data_kjmap_tile);
-
-        const shutoken = data_kjmap_tile.find(item => item.DataSet == "首都圏");
-        kjmap_dataset = shutoken;
-        // console.log(shutoken.EraInfo.length);
-        
-        for (var i = 0; i < shutoken.EraInfo.length; i++) {
-            const option = document.createElement('option');
-            let idx = shutoken.EraInfo.length - i - 1;
-            option.value = idx;
-            option.textContent = String(shutoken.EraInfo[idx].Era[0]) + "年～" + String(shutoken.EraInfo[idx].Era[1]) + "年";
-            kjmap_selector.appendChild(option);
-        }
-
-        // kjmap_selector
-
-    }).catch(error => {
-        console.error("JSONファイル読み込み中にエラーが発生しました。: ", error);
-    });
-
-
-
+ 
     // 地形図と航空写真の切り替えボタンの設定
     const button = document.querySelector('.map-toggle-button');
     button.addEventListener('click', () => {
         // 現在の状態によってクラスとテキストを切り替える
-        console.log('押された')
+        // console.log('押された')
         if (button.classList.contains('map-view')) {
             button.classList.remove('map-view');
             button.classList.add('satellite-view');
             button.querySelector('span').textContent = '地形図に切り替え';
             // 実際の地図の切り替え処理...
-            const url = gsi_eraphoto_dataset.EraInfo[0].EraFolder;
-            tileLayer.setUrl(url)
+            MapChanged();
         } else {
             button.classList.remove('satellite-view');
             button.classList.add('map-view');
             button.querySelector('span').textContent = '航空写真に切り替え';
             // 実際の地図の切り替え処理...
-            const url = gsi_std_dataset[0].EraInfo[0].EraFolder;
-            tileLayer.setUrl(url)
+            MapChanged();
         }
     });
     // ボタンに付随するアイコンの設定
@@ -148,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 地図をズームアウトしたときに重くならないように、マーカークラスターを使う
     const marker_group = L.markerClusterGroup();
     const markerData = Spots.spots;
-
     markerData.forEach(data =>  {
         // バッククォーテーションであることに注意：`
         const marker = L.marker([data.lat, data.lng]).bindPopup(`<b>${data.name}</b><br>${data.abst}`);
@@ -169,31 +138,42 @@ document.addEventListener('DOMContentLoaded', function() {
         })
 
         marker_group.addLayer(marker);
-
     });
     map.addLayer(marker_group);
 
 
 
-function baseChanged() {
-    const element = document.getElementById('base-dropdown')
-    const value = element.value;
-    const url = gsi_std_dataset[value].EraInfo[0].EraFolder;
-    tileLayer.setUrl(url);
-}
 
-function photoChanged() {
-    const element = document.getElementById('photo-dropdown');
-    const value = element.value;
-    const url = gsi_eraphoto_dataset.EraInfo[value].EraFolder;
-    tileLayer.setUrl(url)
-}
 
-function topoChanged() {
-    const element = document.getElementById('topo-dropdown');
-    const value = element.value;
-    const ulr = "https://ktgis.net/kjmapw/kjtilemap/" + kjmap_dataset.DataSetFolder + "/" + kjmap_dataset.EraInfo[value].EraFolder + "/{z}/{x}/{-y}.png";
-    tileLayer.setUrl(ulr);
-}
+    /**
+     * 地形図・航空写真の変更、年代の変更、地図の位置が変更されたときに実行される。
+     * 変更後に表示されるべき地図が現在と同じかを検証し、必要があれば変更する。
+     */
+    function MapChanged() {
+        // 表示している地図の中心座標
+        const get_center = map.getCenter();
+        const center_coordinate = [get_center.lat, get_center.lng];
+        // スライダーの値
+        const year = slider.noUiSlider.get(true);
+        // 地図の状態
+        let map_type = "";
+        if (button.classList.contains('map-view')) {
+            map_type = "kjmap";
+        } else if (button.classList.contains('satellite-view')) {
+            map_type = "photo";
+        }
 
-})
+        const url_set = tile_loader.GetUrl(year, map_type, center_coordinate);
+        if (url_set.url !== current_map_url) {
+            current_map_url = url_set.url;
+            // console.log(url_set.data_set)
+            map_label.textContent = url_set.mapname;
+            if (url_set.era[0] === -1) {
+                era_label.textContent = "最新の地図"
+            } else {
+                era_label.textContent = String(url_set.era[0]) + "~" + String(url_set.era[1]) + "年";
+            }
+            tileLayer.setUrl(url_set.url);
+        }
+    }
+}
