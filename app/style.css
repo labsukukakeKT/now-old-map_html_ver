@@ -112,3 +112,31 @@ html, body {
     border-radius: 3px;
     font-weight: bold;
 }
+
+
+/* 検索欄に関する設定 */
+.autocomplete-container {
+    position: relative;
+    display: inline-block;
+}
+
+#suggestions {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+#suggestions li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+
+}
+#suggestions li:hover {
+    background-color: #aaaaaa;
+}

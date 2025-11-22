@@ -2,6 +2,7 @@ import FileNames from "./filenames.js";
 import TileLoader from "./utils/tileloader.js";
 import Spots from "./utils/spots.js";
 import setSlider from "./utils/slider.js";
+import setSearch from "./utils/set_search.js";
 
 // HTMLが完全に読み込まれた後にコードを実行する
 document.addEventListener('DOMContentLoaded', main);
@@ -37,6 +38,12 @@ async function main() {
         maxZoom: 18 // 最大ズームレベル
     }).addTo(map);
     map.on('dragend', MapChanged);
+
+
+
+
+    // 検索欄の設定
+    setSearch(map);
 
 
 
